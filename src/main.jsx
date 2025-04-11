@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import MainContent from './components/MainContent';
 import SignIn from './components/SignIn';
 import './HomePage.css';
+import './connexion.css';
 
 
 

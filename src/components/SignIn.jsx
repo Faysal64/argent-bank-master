@@ -3,6 +3,7 @@ import React from 'react';
 
 function SignIn() {
   return (
+    <div className="main bg-dark">
     <main className="main bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
@@ -24,6 +25,7 @@ function SignIn() {
         </form>
       </section>
     </main>
+    </div>
   );
 }
 
