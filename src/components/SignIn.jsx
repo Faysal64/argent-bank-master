@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../connexion.css'; // adapte le chemin si nécessaire
-import Header from './Header';
-import Footer from './Footer';
+import { useDispatch } from 'react-redux'; 
+
+import '../connexion.css';
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,18 +21,16 @@ function SignIn() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
       if (response.ok && data.body?.token) {
-        // ✅ Stocke le token si nécessaire
         localStorage.setItem('token', data.body.token);
-        // 🔁 Redirige vers la page utilisateur
+
+        dispatch({ type: 'LOGIN', payload: data.body.token });
+
         navigate('/UserPage');
       } else {
         setError(data.message || 'Identifiants invalides');
@@ -44,7 +43,7 @@ function SignIn() {
 
   return (
     <>
-      <Header />
+      
       <main className="main bg-dark">
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>
@@ -81,7 +80,7 @@ function SignIn() {
           </form>
         </section>
       </main>
-      <Footer />
+      
     </>
   );
   

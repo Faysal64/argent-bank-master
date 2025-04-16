@@ -1,34 +1,9 @@
 import React from 'react';
 import '../connexion.css';
-import { Link } from 'react-router-dom';
-
- // Assure-toi que le chemin est correct
-
 
 function UserPage() {
   return (
     <>
-      <nav className="main-nav">
-        <Link to="/" className="main-nav-logo">
-          <img
-            className="main-nav-logo-image"
-            src="/assets/img/argentBankLogo.png" 
-            alt="Argent Bank Logo" 
-          />
-          <h1 className="sr-only">Argent Bank</h1>
-        </Link>
-        <div>
-          <a className="main-nav-item" href="/user">
-            <i className="fa fa-user-circle"></i>
-            Tony
-          </a>
-          <a className="main-nav-item" href="/">
-            <i className="fa fa-sign-out"></i>
-            Sign Out
-          </a>
-        </div>
-      </nav>
-
       <main className="main bg-dark columnBalance">
         <div className="header">
           <h1>
@@ -53,7 +28,7 @@ function UserPage() {
 
         <section className="account">
           <div className="account-content-wrapper">
-            <h3 className="account-title">Argent Bank Savings (x6712)</h3>""
+            <h3 className="account-title">Argent Bank Savings (x6712)</h3>
             <p className="account-amount">$10,928.42</p>
             <p className="account-amount-description">Available Balance</p>
           </div>
@@ -73,12 +48,8 @@ function UserPage() {
           </div>
         </section>
       </main>
-
-      <footer className="footer">
-        <p className="footer-text">Copyright 2020 Argent Bank</p>
-      </footer>
     </>
   );
 }
 
-export default UserPage ;
+export default UserPage;

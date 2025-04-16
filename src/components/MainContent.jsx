@@ -1,11 +1,10 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
+
 
 function MainContent() {
   return (
     <>
-      <Header />
+   
       <main>
         <div className="hero" style={{ backgroundImage: 'url(/assets/img/bank-tree.jpeg)' }}>
           <section className="hero-content">
@@ -55,7 +54,7 @@ function MainContent() {
           </div>
         </section>
       </main>
-      <Footer />
+      
     </>
   );
 }

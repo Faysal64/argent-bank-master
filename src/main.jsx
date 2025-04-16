@@ -1,10 +1,13 @@
-// src/main.jsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';      
+import store from './store';                
 import MainContent from './components/MainContent';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import SignIn from './components/SignIn';
-import UserPage from './components/UserPage'; // 👈 tu ne l’as pas encore importé
+import UserPage from './components/UserPage'; 
 import './connexion.css'; 
 import './HomePage.css';  
 
@@ -15,13 +18,17 @@ import './HomePage.css';
 function App() {
   return (
     <StrictMode>
+       <Provider store={store}>
       <BrowserRouter>
+      <Header />
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/UserPage" element={<UserPage />} /> {/* Ajouté ici */}
+          <Route path="/UserPage" element={<UserPage />} /> 
         </Routes>
+        <Footer />
       </BrowserRouter>
+      </Provider>
     </StrictMode>
   );
 }
