@@ -3,15 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 function Header() {
-  const reduxIsLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const username = useSelector((state) => state.user.name);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [isLoggedIn, setIsLoggedIn] = useState(reduxIsLoggedIn);
-
-  useEffect(() => {
-    setIsLoggedIn(reduxIsLoggedIn);
-  }, [reduxIsLoggedIn]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -34,7 +29,7 @@ function Header() {
         {isLoggedIn ? (
           <>
             <Link to="/UserPage" className="main-nav-item">
-              <i className="fa fa-user-circle"></i> Tony
+              <i className="fa fa-user-circle"></i> {username}
             </Link>
             <Link to="/" onClick={handleLogout} className="main-nav-item">
               <i className="fa fa-sign-out"></i> Sign Out

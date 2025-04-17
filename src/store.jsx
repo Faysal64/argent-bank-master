@@ -1,31 +1,42 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-// état initial global
-const initialState = {
-  isLoggedIn: !!localStorage.getItem('token'), // on garde l'état même après refresh
+// --- auth reducer ---
+const authInitialState = {
+  isLoggedIn: !!localStorage.getItem('token'),
   token: localStorage.getItem('token') || null,
 };
 
-// reducer : fonction qui gère les changements d'état
-function authReducer(state = initialState, action) {
+function authReducer(state = authInitialState, action) {
   switch (action.type) {
     case 'LOGIN':
-      return {
-        ...state,
-        isLoggedIn: true,
-        token: action.payload,
-      };
+      return { ...state, isLoggedIn: true, token: action.payload };
     case 'LOGOUT':
-      return {
-        ...state,
-        isLoggedIn: false,
-        token: null,
-      };
+      return { ...state, isLoggedIn: false, token: null };
     default:
       return state;
   }
 }
 
-const store = createStore(authReducer);
+// --- user reducer ---
+const userInitialState = {
+  name: 'Tony Jarvis',
+};
+
+function userReducer(state = userInitialState, action) {
+  switch (action.type) {
+    case 'UPDATE_NAME':
+      return { ...state, name: action.payload };
+    default:
+      return state;
+  }
+}
+
+// --- combine & create store ---
+const rootReducer = combineReducers({
+  auth: authReducer,
+  user: userReducer,
+});
+
+const store = createStore(rootReducer);
 
 export default store;
