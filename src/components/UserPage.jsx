@@ -12,7 +12,7 @@ function UserPage() {
     return (
       <main className="main bg-dark columnBalance">
         <h1 style={{ color: 'white', textAlign: 'center' }}>
-          You must be logged in to view this page.
+          Vous devriez être connecté.
         </h1>
       </main>
     );

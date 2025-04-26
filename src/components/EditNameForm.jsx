@@ -7,13 +7,11 @@ export default function EditNameForm({ onCancel }) {
   const currentUser = useSelector((state) => state.user);
 
   const [username, setUsername] = useState(currentUser.name || '');
-  const [firstName, setFirstName] = useState('Tony'); // à remplacer par state.user.firstName si dispo
-  const [lastName, setLastName] = useState('Stark');   // pareil ici
+  const [firstName, setFirstName] = useState('Tony'); 
+  const [lastName, setLastName] = useState('Stark');   
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Tu peux adapter ici selon ce que tu veux envoyer (username seulement ou tout)
     dispatch({ type: 'UPDATE_NAME', payload: username });
     onCancel();
   };

@@ -6,7 +6,7 @@ function MainContent() {
     <>
    
       <main>
-        <div className="hero" style={{ backgroundImage: 'url(/assets/img/bank-tree.jpeg)' }}>
+        <div className="hero" style={{ backgroundImage: 'url(/assets/img/bank-tree.webp)' }}>
           <section className="hero-content">
             <h2 className="sr-only">Promoted Content</h2>
             <p className="subtitle">No fees.</p>
@@ -19,7 +19,7 @@ function MainContent() {
           <h2 className="sr-only">Features</h2>
           <div className="feature-item">
             <img
-              src="/assets/img/icon-chat.png"
+              src="/assets/img/icon-chat.webp"
               alt="Chat Icon"
               className="feature-icon"
             />
@@ -31,7 +31,7 @@ function MainContent() {
           </div>
           <div className="feature-item">
             <img
-              src="/assets/img/icon-money.png"
+              src="/assets/img/icon-money.webp"
               alt="Money Icon"
               className="feature-icon"
             />
@@ -42,7 +42,7 @@ function MainContent() {
           </div>
           <div className="feature-item">
             <img
-              src="/assets/img/icon-security.png"
+              src="/assets/img/icon-security.webp"
               alt="Security Icon"
               className="feature-icon"
             />
