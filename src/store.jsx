@@ -19,8 +19,9 @@ function authReducer(state = authInitialState, action) {
 
 // --- user reducer ---
 const userInitialState = {
-  name: 'Tony Jarvis',
+  name: localStorage.getItem('username') || 'Tony Jarvis',
 };
+
 
 function userReducer(state = userInitialState, action) {
   switch (action.type) {

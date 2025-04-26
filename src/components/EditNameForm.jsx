@@ -13,8 +13,10 @@ export default function EditNameForm({ onCancel }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch({ type: 'UPDATE_NAME', payload: username });
+    localStorage.setItem('username', username); // <-- on sauvegarde dans localStorage
     onCancel();
   };
+  
 
   return (
     <form onSubmit={handleSubmit} className="edit-name-form">
@@ -31,24 +33,25 @@ export default function EditNameForm({ onCancel }) {
       </div>
 
       <div className="input-wrapper">
-        <label htmlFor="firstname">First name</label>
-        <input
-          type="text"
-          id="firstname"
-          value={firstName}
-          onChange={({ target }) => setFirstName(target.value)}
-        />
-      </div>
+  <label htmlFor="firstname">First name</label>
+  <input
+    type="text"
+    id="firstname"
+    value={firstName}
+    disabled // <-- on ajoute ça
+  />
+</div>
 
-      <div className="input-wrapper">
-        <label htmlFor="lastname">Last name</label>
-        <input
-          type="text"
-          id="lastname"
-          value={lastName}
-          onChange={({ target }) => setLastName(target.value)}
-        />
-      </div>
+<div className="input-wrapper">
+  <label htmlFor="lastname">Last name</label>
+  <input
+    type="text"
+    id="lastname"
+    value={lastName}
+    disabled // <-- on ajoute ça
+  />
+</div>
+
 
       <div className="edit-buttons">
         <button type="submit" className="edit-button save">Save</button>

@@ -112,11 +112,19 @@ paths:
         - Transactions
       summary: Liste des transactions
       description: Retourne toutes les transactions de l’utilisateur connecté
+      security:
+        - Bearer: []
       produces:
         - application/json
       responses:
         '200':
-          description: OK
+          description: Liste des transactions récupérée avec succès
+          schema:
+            $ref: '#/definitions/TransactionList'
+        '401':
+          description: Non autorisé (token manquant ou invalide)
+        '500':
+          description: Erreur interne du serveur
 
   /transactions/{id}:
     put:
@@ -124,6 +132,8 @@ paths:
         - Transactions
       summary: Modifier une transaction
       description: Permet de modifier la note ou la catégorie
+      security:
+        - Bearer: []
       parameters:
         - name: id
           in: path
@@ -133,15 +143,22 @@ paths:
           name: body
           required: true
           schema:
-            type: object
-            properties:
-              category:
-                type: string
-              note:
-                type: string
+            $ref: '#/definitions/TransactionUpdate'
+      produces:
+        - application/json
       responses:
         '200':
-          description: Transaction mise à jour
+          description: Transaction mise à jour avec succès
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Données invalides ou format incorrect
+        '401':
+          description: Non autorisé (token manquant ou invalide)
+        '404':
+          description: Transaction non trouvée
+        '500':
+          description: Erreur interne du serveur
 
 securityDefinitions:
   Bearer:
@@ -202,4 +219,33 @@ definitions:
     type: object
     properties:
       userName:
+        type: string
+
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: string
+      date:
+        type: string
+      amount:
+        type: number
+      description:
+        type: string
+      category:
+        type: string
+      note:
+        type: string
+
+  TransactionList:
+    type: array
+    items:
+      $ref: '#/definitions/Transaction'
+
+  TransactionUpdate:
+    type: object
+    properties:
+      category:
+        type: string
+      note:
         type: string

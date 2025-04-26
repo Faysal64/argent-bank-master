@@ -64,3 +64,8 @@
     background-color: #00bc77;
   }
   
+  input:disabled {
+    background-color: #f0f0f0;
+    color: #666666;
+  }
+  
