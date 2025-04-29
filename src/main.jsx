@@ -8,8 +8,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import SignIn from './components/SignIn';
 import UserPage from './components/UserPage'; 
-import './connexion.css'; 
-import './HomePage.css';  
+import './styles/connexion.css'; 
+import './styles/HomePage.css';  
 
 
 

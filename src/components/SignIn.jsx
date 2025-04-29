@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; 
 
-import '../connexion.css';
+import '../styles/connexion.css';
+
 
 function SignIn() {
   const [email, setEmail] = useState('');

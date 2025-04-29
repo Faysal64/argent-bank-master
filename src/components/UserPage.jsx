@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import EditNameForm from './EditNameForm';
-import '../connexion.css';
+import '../styles/connexion.css';
 
 function UserPage() {
   const [isEditing, setIsEditing] = useState(false);

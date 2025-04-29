@@ -82,9 +82,12 @@ body {
 }
 
 .main-nav-logo-image {
-  max-width: 100%;
   width: 200px;
+  height: auto;
+  transition: width 0.3s ease; /* Ajoute une transition douce */
 }
+
+
 
 .hero {
   background-image: url('../img/bank-tree.jpeg');
@@ -308,3 +311,29 @@ body {
     width: 200px;
   }
 }
+
+@media (max-width: 500px) {
+  .main-nav {
+    padding: 5px 10px; /* Réduire l'espacement horizontal */
+  }
+
+  .main-nav-logo-image {
+    width: 150px; /* Ici on réduit vraiment */
+    height: auto;
+  }
+
+  .main-nav-right {
+    display: flex;
+    align-items: center; 
+  }
+
+  .main-nav-item {
+    font-size: 0.8rem; /* Texte plus petit */
+    margin-right: 0.3rem; /* Moins d'espace entre les éléments */
+  }
+
+  .fa {
+    font-size: 0.8rem; /* Réduire la taille des icônes aussi */
+  }
+}
+
