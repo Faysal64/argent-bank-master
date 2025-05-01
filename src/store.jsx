@@ -1,6 +1,5 @@
 import { createStore, combineReducers } from 'redux';
 
-// --- auth reducer ---
 const authInitialState = {
   isLoggedIn: !!localStorage.getItem('token'),
   token: localStorage.getItem('token') || null,
@@ -17,11 +16,9 @@ function authReducer(state = authInitialState, action) {
   }
 }
 
-// --- user reducer ---
 const userInitialState = {
-  name: localStorage.getItem('username') || 'Tony Jarvis',
+  name: '',
 };
-
 
 function userReducer(state = userInitialState, action) {
   switch (action.type) {
@@ -32,12 +29,10 @@ function userReducer(state = userInitialState, action) {
   }
 }
 
-// --- combine & create store ---
 const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
 });
 
 const store = createStore(rootReducer);
-
 export default store;

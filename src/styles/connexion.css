@@ -82,7 +82,7 @@ body {
 }
 
 .main-nav-logo-image {
-  width: 200px;
+  
   height: auto;
   transition: width 0.3s ease; /* Ajoute une transition douce */
 }
@@ -314,12 +314,13 @@ body {
 
 @media (max-width: 500px) {
   .main-nav {
-    padding: 5px 10px; /* Réduire l'espacement horizontal */
+    padding: 5px 10px; 
   }
 
   .main-nav-logo-image {
-    width: 150px; /* Ici on réduit vraiment */
-    height: auto;
+    width: 140px !important; 
+    height: auto !important;
+    transition: width 0.3s ease;
   }
 
   .main-nav-right {
@@ -328,12 +329,14 @@ body {
   }
 
   .main-nav-item {
-    font-size: 0.8rem; /* Texte plus petit */
-    margin-right: 0.3rem; /* Moins d'espace entre les éléments */
+    font-size: 0.8rem; 
+    margin-right: 0.3rem; 
   }
 
   .fa {
-    font-size: 0.8rem; /* Réduire la taille des icônes aussi */
+    font-size: 0.8rem; 
   }
 }
+
+
 
