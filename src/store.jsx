@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from 'redux';
 
 const authInitialState = {
-  isLoggedIn: !!localStorage.getItem('token'),
+  isLoggedIn: false, 
   token: localStorage.getItem('token') || null,
 };
 
@@ -9,7 +9,7 @@ function authReducer(state = authInitialState, action) {
   switch (action.type) {
     case 'LOGIN':
       return { ...state, isLoggedIn: true, token: action.payload };
-    case 'LOGOUT':  
+    case 'LOGOUT':
       return { ...state, isLoggedIn: false, token: null };
     default:
       return state;

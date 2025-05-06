@@ -1,6 +1,6 @@
-import { StrictMode, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import store from './store';
 import MainContent from './components/MainContent';
@@ -13,19 +13,23 @@ import './styles/HomePage.css';
 
 function App() {
   return (
-    <StrictMode>
-      <Provider store={store}>
+    <Provider store={store}>
+      <BrowserRouter>
         <AppWithProfile />
-      </Provider>
-    </StrictMode>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
 function AppWithProfile() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
+    if (!isLoggedIn) return;
+
     const fetchProfile = async () => {
       if (!token) return;
 
@@ -38,8 +42,15 @@ function AppWithProfile() {
         });
 
         const data = await res.json();
+
         if (res.ok && data.body?.userName) {
           dispatch({ type: 'UPDATE_NAME', payload: data.body.userName });
+        } else {
+          if (data.message === 'jwt expired') {
+            localStorage.removeItem('token');
+            dispatch({ type: 'LOGOUT' });
+            navigate('/sign-in');
+          }
         }
       } catch (err) {
         console.error('Erreur chargement profil global :', err);
@@ -47,10 +58,10 @@ function AppWithProfile() {
     };
 
     fetchProfile();
-  }, [token, dispatch]);
+  }, [token, dispatch, navigate, isLoggedIn]);
 
   return (
-    <BrowserRouter>
+    <>
       <Header />
       <Routes>
         <Route path="/" element={<MainContent />} />
@@ -58,7 +69,7 @@ function AppWithProfile() {
         <Route path="/UserPage" element={<UserPage />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 

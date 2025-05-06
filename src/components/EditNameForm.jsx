@@ -20,6 +20,7 @@ function EditNameForm({ onCancel }) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
+
         },
         body: JSON.stringify({ userName: username }),
       });
