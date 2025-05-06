@@ -2,7 +2,7 @@ import '../styles/EditNameForm.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function EditNameForm({ onCancel }) {
+function EditNameForm({ onCancel }) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user);
   const token = useSelector((state) => state.auth.token);
@@ -63,3 +63,5 @@ export default function EditNameForm({ onCancel }) {
     </form>
   );
 }
+
+export default EditNameForm;

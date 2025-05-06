@@ -111,7 +111,7 @@ paths:
       tags:
         - Transactions
       summary: Liste des transactions
-      description: Retourne toutes les transactions de l’utilisateur connecté
+      description: Retourne toutes les transactions de l’utilisateur connecté, groupées par compte
       security:
         - Bearer: []
       produces:
@@ -127,11 +127,37 @@ paths:
           description: Erreur interne du serveur
 
   /transactions/{id}:
+    get:
+      tags:
+        - Transactions
+      summary: Détail d'une transaction
+      description: Retourne les détails d’une transaction spécifique
+      security:
+        - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Détail de la transaction
+          schema:
+            $ref: '#/definitions/Transaction'
+        '401':
+          description: Non autorisé
+        '404':
+          description: Transaction non trouvée
+        '500':
+          description: Erreur serveur
+
     put:
       tags:
         - Transactions
       summary: Modifier une transaction
-      description: Permet de modifier la note ou la catégorie
+      description: Permet de modifier la note ou la catégorie d’une transaction
       security:
         - Bearer: []
       parameters:
@@ -152,13 +178,13 @@ paths:
           schema:
             $ref: '#/definitions/Transaction'
         '400':
-          description: Données invalides ou format incorrect
+          description: Données invalides
         '401':
-          description: Non autorisé (token manquant ou invalide)
+          description: Non autorisé
         '404':
           description: Transaction non trouvée
         '500':
-          description: Erreur interne du serveur
+          description: Erreur serveur
 
 securityDefinitions:
   Bearer:

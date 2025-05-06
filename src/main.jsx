@@ -21,7 +21,6 @@ function App() {
   );
 }
 
-// 👇 Cette partie charge le profil automatiquement
 function AppWithProfile() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);

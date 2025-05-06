@@ -28,7 +28,7 @@ function SignIn() {
         localStorage.setItem('token', token);
         dispatch({ type: 'LOGIN', payload: token });
 
-        // Récupère le username depuis l’API
+        
         const profileRes = await fetch('http://localhost:3001/api/v1/user/profile', {
           method: 'GET',
           headers: {
@@ -38,10 +38,11 @@ function SignIn() {
 
         const profileData = await profileRes.json();
 
-        if (profileRes.ok && profileData.body?.userName) {
-          dispatch({ type: 'UPDATE_NAME', payload: profileData.body.userName });
+        if (profileRes.ok) {
+          const userName = profileData.body?.userName || 'Tony Jarvis';
+          dispatch({ type: 'UPDATE_NAME', payload: userName });
         }
-
+        
         navigate('/UserPage');
       } else {
         setError(data.message || 'Identifiants invalides');
