@@ -28,21 +28,29 @@ function AppWithProfile() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
-    if (!isLoggedIn) return;
-
+    const tokenInStorage = localStorage.getItem('token');
+  
+    if (!tokenInStorage) {
+      // Pas de token, pas connecté
+      return;
+    }
+  
+    // Si Redux ne sait pas encore qu'on est connecté, on l'informe
+    if (!isLoggedIn) {
+      dispatch({ type: 'LOGIN', payload: tokenInStorage });
+    }
+  
     const fetchProfile = async () => {
-      if (!token) return;
-
       try {
         const res = await fetch('http://localhost:3001/api/v1/user/profile', {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${tokenInStorage}`,
           },
         });
-
+  
         const data = await res.json();
-
+  
         if (res.ok && data.body?.userName) {
           dispatch({ type: 'UPDATE_NAME', payload: data.body.userName });
         } else {
@@ -56,9 +64,10 @@ function AppWithProfile() {
         console.error('Erreur chargement profil global :', err);
       }
     };
-
+  
     fetchProfile();
-  }, [token, dispatch, navigate, isLoggedIn]);
+  }, [dispatch, navigate, isLoggedIn]);
+  
 
   return (
     <>
