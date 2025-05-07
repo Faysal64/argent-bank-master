@@ -31,11 +31,10 @@ function AppWithProfile() {
     const tokenInStorage = localStorage.getItem('token');
   
     if (!tokenInStorage) {
-      // Pas de token, pas connecté
+      
       return;
     }
-  
-    // Si Redux ne sait pas encore qu'on est connecté, on l'informe
+
     if (!isLoggedIn) {
       dispatch({ type: 'LOGIN', payload: tokenInStorage });
     }
